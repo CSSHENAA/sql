@@ -1,0 +1,17 @@
+teachermapper.xml
+
+<select id="selectMore" resultMap="com.shengda.pojo.Teacher">
+        select * from teacher where
+        <if test="sname!=null and sname!=''">
+            sname=#{sname}
+        </if>
+        <if test="ssex!=null and ssex!=''">
+            ssex=#{ssex}
+        </if>
+    </select>
+    <delete id="deleteMore">
+        delete from teacher where sno in
+        <foreach collection="ids" item="sno" separator="," open="(" close=")">
+            #{sno}
+        </foreach>
+    </delete>
